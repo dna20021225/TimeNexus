@@ -1,9 +1,11 @@
-<div class="text-center">
-    <div class="ext-2xl">勤怠管理統合システム</div>
-    <div class="text-5xl">TimeNexus</div>
-    <div class="">Develop Edition</div>
-</div>
 <x-guest-layout>
+    <!-- Page Title -->
+    <div class="text-center">
+        <div class="text-1xl">勤怠管理統合システム</div>
+        <div class="font-serif text-5xl">TimeNexus</div>
+        <div class="">Develop Edition</div>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
