@@ -17,19 +17,27 @@
                 </div>
             </div>
         </div>
-        
         <div class="p-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <!-- 書類 -->
-                    <div class="flex">
-                        <a href="{{ route('dashboard') }}" class="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600">区分１</a>
-                        <a href="{{ route('dashboard') }}" class="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600">区分2</a>
-                        <a href="{{ route('dashboard') }}" class="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600">区分3</a>
-                        <a href="{{ route('dashboard') }}" class="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600">区分4</a>
-                    </div>
+                    @foreach ($categoriesWithItems as $category => $items)
+                        <select class="px-4 py-2 mx-2 text-white bg-blue-500 rounded hover:bg-blue-600" onchange="navigateToPage(this.value)">
+                            <option value="">{{ $category }}</option>
+                            @foreach ($items as $value => $item)
+                                <option value="{{ route('dashboard')}}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function navigateToPage(url) {
+        if (url) {
+            window.location.href = url;
+        }
+    }
+    </script>
