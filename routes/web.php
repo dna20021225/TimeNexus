@@ -23,4 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// 各種書類のルーティング
+Route::get('/documents/{category}/{id}', [TestController::class, 'showDocument'])
+    ->name('documents.show');
+
 require __DIR__.'/auth.php';

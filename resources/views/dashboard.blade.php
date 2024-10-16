@@ -24,9 +24,9 @@
                         @foreach ($categoriesWithItems as $category => $items)
                             <div class="relative">
                                 <select class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" onchange="navigateToPage(this.value)">
-                                    <option value="">{{ $category }}</option>
-                                    @foreach ($items as $value => $item)
-                                        <option value="{{ route('dashboard')}}">{{ $item }}</option>
+                                    <option value="" selected>{{ $category }}</option>
+                                    @foreach ($items as $id => $item)
+                                        <option value="{{ route('documents.show', ['category' => $category, 'id' => $id]) }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
                             </div>
