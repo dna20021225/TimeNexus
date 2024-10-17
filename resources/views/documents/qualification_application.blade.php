@@ -1,2 +1,16 @@
-<!-- Content of qualification_application.blade.php -->
-c:\Users\dna12\source\repos\bladeつくるくん\year_end_and_new_year_allowance_application.blade.php c:\Users\dna12\source\repos\bladeつくるくん\qualification_application.blade.php c:\Users\dna12\source\repos\bladeつくるくん\resolution.blade.php c:\Users\dna12\source\repos\bladeつくるくん\self_application.blade.php c:\Users\dna12\source\repos\bladeつくるくん\strings.csv c:\Users\dna12\source\repos\bladeつくるくん\travel_expense_advance_application.blade.php c:\Users\dna12\source\repos\bladeつくるくん\travel_expense_application.blade.php c:\Users\dna12\source\repos\bladeつくるくん\travel_expense_payment_application.blade.php c:\Users\dna12\source\repos\bladeつくるくん\weekly_work_report.blade.php c:\Users\dna12\source\repos\bladeつくるくん\work_confirmation_20th.blade.php c:\Users\dna12\source\repos\bladeつくるくん\work_confirmation_31st.blade.php c:\Users\dna12\source\repos\bladeつくるくん\work_forecast.blade.php
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-2xl font-bold leading-tight text-gray-800">
+            {{ __('Development') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12 bg-gray-100">
+        <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="mb-4 text-lg font-semibold"></h3>
+
+                </div>
+            </div>
+</x-app-layout>
