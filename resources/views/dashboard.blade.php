@@ -7,9 +7,7 @@
 
     <div class="py-12 bg-gray-100">
         <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-
-            <x-department-component :department="'デジタルエンタテイメント事業部'" :username="auth()->user()->name"/>
-
+            <x-department-dropdown-component /> 
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="mb-4 text-lg font-semibold">勤怠入力</h3>
@@ -48,7 +46,14 @@
                     </form>
                 </div>
             </div>
-        </div>
+
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="mb-4 text-lg font-semibold">テスト</h3>
+                </div>
+            </div>
+        </div>                 
+
     </div>
 </x-app-layout>
 
