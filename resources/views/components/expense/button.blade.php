@@ -3,9 +3,9 @@
 <button 
     type="{{ $type }}"
     @class([
-        'px-6 py-2 rounded',
-        'bg-gray-200 hover:bg-gray-300' => $variant === 'default',
-        'bg-blue-500 text-white hover:bg-blue-600' => $variant === 'primary'
+        'px-8 py-4 text-2xl rounded-lg border transition-all duration-200',
+        'bg-gray-100 border-gray-200 hover:bg-gray-50 shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_12px_rgba(0,0,0,0.1)]' => $variant === 'default',
+        'text-white border-[#0BA9F3] shadow-[0_4px_6px_rgba(11,169,243,0.3)] hover:shadow-[0_6px_12px_rgba(11,169,243,0.4)] bg-gradient-to-b from-[#0BA9F3] to-[#57CAF1] hover:from-[#1CB4F4] hover:to-[#67D0F2]' => $variant === 'primary'
     ])
 >
     {{ $slot }}
