@@ -25,7 +25,8 @@ class TestController extends Controller
         // カテゴリーとIDに基づいて適切なビューを返す
         switch ($documentName) {
             case '経費申請書':
-                return view('documents.application_for_expenses');
+                session(['documentName' => $documentName]);
+                return view('documents.application_for_expenses', compact('documentName'));
             case '通勤手当申請書':
                 return view('documents.commute_allowance_application');
             case '駐在旅費仮払申請書':
