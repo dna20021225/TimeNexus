@@ -1,5 +1,5 @@
 <div class="py-3 bg-gray-100">
-    <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+    <div class="max-w-full px-1 mx-auto sm:px-2 lg:px-3">
         {{ $slot }}
     </div>
 </div>
