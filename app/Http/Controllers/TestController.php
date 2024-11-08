@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DocumentCategory;
+use App\Models\ExpenseApplication;
+use App\Models\ExpenseDetail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TestController extends Controller
 {
@@ -74,12 +79,68 @@ class TestController extends Controller
     }
     public function storeExpenseApplication(Request $request)
     {
-        dd($request->all());
-        $request->validate([
+        try {
+            $validated = $request->validate([
+                'date' => 'required|date',
+                'expense_category' => 'required|string',
+                'client_billable' => 'required|string',
+                'details' => 'required|array|min:1',
+                'details.*.date' => 'required|date',
+                'details.*.description' => 'required|string|max:255',
+                'details.*.unit_price' => 'required|numeric|min:0',
+                'details.*.quantity' => 'required|numeric|min:0',
+                'details.*.total' => 'required|numeric|min:0',
+            ]);
 
-        ]);
+            DB::beginTransaction();
 
+            try {
+                // 経費申請の作成
+                $application = ExpenseApplication::create([
+                    'user_id' => Auth::id(),
+                    'application_date' => $validated['date'],
+                    'expense_category' => $validated['expense_category'],
+                    'client_billable' => $validated['client_billable'] === '可',
+                    'total_amount' => collect($validated['details'])->sum('total'),
+                    'status' => ExpenseApplication::STATUS_PENDING,
+                ]);
 
-        return redirect()->route('dashboard');
+                Log::info('Application created:', ['application' => $application->toArray()]);
+
+                // 経費明細の作成
+                foreach ($validated['details'] as $detail) {
+                    $expenseDetail = $application->details()->create([
+                        'expense_date' => $detail['date'],
+                        'description' => $detail['description'],
+                        'unit_price' => $detail['unit_price'],
+                        'quantity' => $detail['quantity'],
+                        'amount' => $detail['total'],
+                    ]);
+                    
+                    Log::info('Detail created:', ['detail' => $expenseDetail->toArray()]);
+                }
+
+                DB::commit();
+                return back()->with('success', '経費申請を登録しました。');
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                Log::error('Transaction failed:', [
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+                throw $e;
+            }
+
+        } catch (\Exception $e) {
+            Log::error('Validation or other error:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return back()
+                ->withInput()
+                ->withErrors(['error' => '経費申請の登録に失敗しました。' . $e->getMessage()]);
+        }
     }
 }
