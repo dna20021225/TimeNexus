@@ -35,15 +35,17 @@
                         <div class="col-span-1 text-2xl text-center">摘要数</div>
                         <div class="col-span-1 text-2xl text-center">金額</div>
                     </div>
-                    <template x-for="(row, index) in rows" :key="index">
-                        <x-expense.detail-row />
-                    </template>
+                    <!-- スクロール可能なコンテナを追加 -->
+                    <div class="max-h-[400px] overflow-y-auto">
+                        <template x-for="(row, index) in rows" :key="index">
+                            <x-expense.detail-row />
+                        </template>
+                    </div>
                     <div class="flex justify-center">
                         <button class="text-4xl rounded bg-neutral-200 px-7" @click="rows.push({})">+</button>
                     </div>
                 </div>
-            </div>
-                            
+            </div>        
             <div class="absolute bottom-0 right-0 flex justify-end m-6 space-x-4">
                 <x-expense.button>保存</x-expense.button>
                 <x-expense.button>確認</x-expense.button>
