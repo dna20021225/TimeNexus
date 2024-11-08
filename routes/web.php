@@ -27,4 +27,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/documents/{category}/{id}', [TestController::class, 'showDocument'])
     ->name('documents.show');
 
+// テスト用のルーティング
+Route::post('/store-expenseapplication', [TestController::class, 'storeExpenseApplication'])
+    ->name('store-expense-application');
+
 require __DIR__.'/auth.php';

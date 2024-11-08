@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\DocumentCategory;
 
 class TestController extends Controller
@@ -70,5 +71,15 @@ class TestController extends Controller
                 abort(404);
         }
 
+    }
+    public function storeExpenseApplication(Request $request)
+    {
+        dd($request->all());
+        $request->validate([
+
+        ]);
+
+
+        return redirect()->route('dashboard');
     }
 }

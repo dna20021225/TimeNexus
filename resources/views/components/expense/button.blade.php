@@ -1,7 +1,14 @@
 {{-- resources/views/components/expense/button.blade.php --}}
-@props(['type' => 'button', 'variant' => 'default'])
+@props([
+    'type' => 'button',
+    'variant' => 'default',
+    'href' => null,
+    'form' => null,  // フォームIDを受け取るためのプロパティを追加
+])
+
 <button 
     type="{{ $type }}"
+    @if($form) form="{{ $form }}" @endif
     @class([
         'px-8 py-4 text-2xl rounded-lg border transition-all duration-200',
         'bg-gray-100 border-gray-200 hover:bg-gray-50 shadow-[0_4px_6px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_12px_rgba(0,0,0,0.1)]' => $variant === 'default',
