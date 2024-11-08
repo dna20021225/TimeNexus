@@ -5,6 +5,7 @@
     <input 
         type="date" 
         value="{{ $value }}" 
-        class="w-1/4 py-3 text-2xl transition-shadow duration-200 border rounded shadow 0 hover:shadow-md"
+        readonly
+        class="w-1/4 py-3 text-2xl transition-shadow duration-200 bg-gray-100 border rounded shadow cursor-not-allowed 0 hover:shadow-md"
     >
 </div>
