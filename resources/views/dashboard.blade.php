@@ -1,12 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-2xl font-bold leading-tight text-gray-800">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12 bg-gray-100">
-        <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+    <x-container>
             <x-department-dropdown-component /> 
             
             <x-white-background-card>
@@ -45,8 +38,7 @@
             <x-white-background-card>
                 <h3 class="mb-4 text-lg font-semibold">テスト</h3>
             </x-white-background-card>
-        </div>
-    </div>
+    </x-container>
 </x-app-layout>
 
 <script>

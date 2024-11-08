@@ -2,23 +2,27 @@
 <div class="grid items-center grid-cols-7 gap-4 mt-4">
     <input 
         type="date" 
-        class="col-span-1 p-2 text-2xl bg-white border border-gray-200 rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] transition-shadow duration-200" 
+        class="col-span-1 p-2 text-2xl transition-shadow duration-200 border-none rounded shadow bg-neutral-200 hover:shadow-md" 
         placeholder="yyyy/mm/dd"
     >
     <input 
         type="text" 
-        class="col-span-3 p-2 text-2xl text-center bg-white border border-gray-200 rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] transition-shadow duration-200" 
-        placeholder="摘要内容"
+        class="col-span-3 p-2 text-2xl text-center transition-shadow duration-200 border-none rounded shadow bg-neutral-200 hover:shadow-md" 
+        placeholder="摘要内容を入力してください"
     >
     <input 
         type="number" 
-        class="col-span-1 p-2 text-2xl text-center bg-white border border-gray-200 rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] transition-shadow duration-200" 
+        class="col-span-1 p-2 text-2xl text-center transition-shadow duration-200 border-none rounded shadow bg-neutral-200 hover:shadow-md" 
         placeholder="000000"
     >
     <input 
         type="number" 
-        class="col-span-1 p-2 text-2xl text-center bg-white border border-gray-200 rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] transition-shadow duration-200" 
+        class="col-span-1 p-2 text-2xl text-center transition-shadow duration-200 border-none rounded shadow bg-neutral-200 hover:shadow-md" 
         placeholder="000000"
     >
-    <div class="col-span-1 p-2 text-2xl text-center">000000</div>
+    <input 
+    type="number" 
+    class="col-span-1 p-2 text-2xl text-center transition-shadow duration-200 border-none rounded shadow bg-neutral-200 hover:shadow-md" 
+    placeholder="000000"
+    >
 </div>
