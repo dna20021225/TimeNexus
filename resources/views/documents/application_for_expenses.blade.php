@@ -58,15 +58,15 @@
                     </div>
                 </div>
                 <div class="absolute bottom-0 right-0 flex justify-end m-6 space-x-4">
-                    <x-expense.button>保存</x-expense.button>
-                    <x-expense.button>確認</x-expense.button>
-                    <x-expense.button 
+                    <x-button>保存</x-button>
+                    <x-button>確認</x-button>
+                    <x-button 
                         type="submit"
                         variant="primary"
                         form="expense-form"
                     >
                         申請する
-                    </x-expense.button>
+                    </x-button>
                 </div>
             </form>
         </x-white-background-card>
