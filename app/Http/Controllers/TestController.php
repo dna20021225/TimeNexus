@@ -143,4 +143,9 @@ class TestController extends Controller
                 ->withErrors(['error' => '経費申請の登録に失敗しました。' . $e->getMessage()]);
         }
     }
+
+    public function moduleTest()
+    {
+        return view('module_test');
+    }
 }

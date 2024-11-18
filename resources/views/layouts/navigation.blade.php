@@ -38,6 +38,10 @@
                             {{ Auth::user()->name }}
                         </div>
 
+                        <x-dropdown-link :href="route('module-test')">
+                            {{ __('ModuleTest') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
