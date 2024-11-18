@@ -1,43 +1,31 @@
 <x-app-layout>
-    <x-container>
-            <x-department-dropdown-component /> 
-            
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">勤怠入力</h3>
-                <div class="flex space-x-4">
-                    <a href="{{ route('dashboard') }}" class="px-6 py-2 text-white transition duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">出勤</a>
-                    <a href="{{ route('dashboard') }}" class="px-6 py-2 text-white transition duration-300 ease-in-out bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">退勤</a>
+    <x-container>            
+        <x-white-background-card>
+            <div class="mb-12">
+                <div class="flex items-center h-20 space-x-20">
+                    <x-button
+                        type="button"
+                        variant="primary"
+                        form="attendance-form"    
+                    >出勤</x-button>
+                    <x-button
+                        type="button"
+                        form="attendance-form"
+                    >退勤</x-button>
+                    <x-search-input />
                 </div>
-            </x-white-background-card>
-
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">各種書類</h3>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    @foreach ($categoriesWithItems as $category => $items)
-                        <div class="relative">
-                            <select class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" onchange="navigateToPage(this.value)">
-                                <option value="" selected>{{ $category }}</option>
-                                @foreach ($items as $id => $item)
-                                    <option value="{{ route('documents.show', ['category' => $category, 'id' => $id]) }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @endforeach
-                </div>
-            </x-white-background-card>
-
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">検索</h3>
-                <form action="{{ route('dashboard') }}" method="GET">
-                    @csrf
-                    <textarea name="query" class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="検索ワードを入力してください"></textarea>
-                    <button type="submit" class="w-full px-4 py-2 mt-4 text-white transition duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">検索</button>
-                </form>
-            </x-white-background-card>
-
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">テスト</h3>
-            </x-white-background-card>
+            </div>
+            <div class="grid grid-cols-1 gap-4 mb-12 space-x-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                @foreach ($categoriesWithItems as $category => $items)
+                    <div class="relative"> {{-- 位置関係を制御する親div --}}
+                        <x-document-dropdown 
+                            :category="$category"
+                            :items="$items"
+                        />
+                    </div>
+                @endforeach
+            </div>
+        </x-white-background-card>
     </x-container>
 </x-app-layout>
 

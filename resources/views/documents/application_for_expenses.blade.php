@@ -13,7 +13,7 @@
             <!-- 入力フォーム -->
             <form id="expense-form" method="POST" action="{{ route('store-expense-application') }}">
                 @csrf
-                <div class="p-6 space-y-6" x-data="{ rows: [0] }">
+                <div class="space-y-6" x-data="{ rows: [0] }">
                     <!-- 申請日フォーム -->
                     <x-expense.date-input label="申請日" />
                     <!-- 費目フォーム -->
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="absolute bottom-0 right-0 flex justify-end m-6 space-x-4">
+                <div class="absolute bottom-0 right-0 flex justify-end m-12 space-x-4">
                     <x-button>保存</x-button>
                     <x-button>確認</x-button>
                     <x-button 
