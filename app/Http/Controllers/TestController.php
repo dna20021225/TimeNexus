@@ -146,6 +146,17 @@ class TestController extends Controller
 
     public function moduleTest()
     {
-        return view('module_test');
+        $categoriesWithItems = DocumentCategory::getCategoriesWithItems();
+        $documentName = 'モジュールテスト';
+        session(['documentName' => $documentName]);
+
+        return view('module_test', compact('categoriesWithItems', 'documentName'));
+    }
+
+    public function createAttendance()
+    {
+        $documentName = 'ダッシュボード';
+        session(['documentName' => $documentName]);
+        return redirect()->route('dashboard')->with('success', '経費が登録されました');
     }
 }

@@ -34,5 +34,8 @@ Route::post('/store-expenseapplication', [TestController::class, 'storeExpenseAp
 Route::get('module-test', [TestController::class, 'moduleTest'])
     ->name('module-test');
 
+// attendance.create
+Route::get('/attendance/create', [TestController::class, 'createAttendance'])
+    ->name('attendance.create');
 
 require __DIR__.'/auth.php';

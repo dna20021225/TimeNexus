@@ -1,9 +1,17 @@
 @php
     $options = [
-        '交通費',
-        '食費',
-        '宿泊費',
-        'その他'
+        '仕入費',
+        '厚生費',
+        '制作旅費',
+        '広告宣伝費',
+        '発送配達費',
+        '事務用消耗品費',
+        '通信交通費',
+        '租税交通費',
+        '備品消耗品費',
+        '管理諸費',
+        '雑費',
+        'その他',
     ];
 @endphp
 
@@ -21,8 +29,14 @@
                         <x-expense.dropdown 
                             label="費目" 
                             name="expense_category"
-                            :options="['交通費', '消耗品費', '会議費']"
+                            :options="$options"
                             selected="交通費"
+                        />
+                        <x-expense.dropdown 
+                            label="区分" 
+                            name="client_billable"
+                            :options="['客先PC', '客先モニター', '客先各種機器', '客先PCパーツ']"
+                            selected="不可"
                         />
                         <x-expense.dropdown 
                             label="客先請求" 
@@ -65,7 +79,7 @@
                         variant="primary"
                         form="expense-form"
                     >
-                        申請する
+                        申請
                     </x-button>
                 </div>
             </form>
