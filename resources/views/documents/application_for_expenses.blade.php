@@ -17,7 +17,7 @@
 
 <x-app-layout>
     <x-container>
-        <x-white-background-card>
+        <x-white-background-card height="h-90-screen">
             <!-- 入力フォーム -->
             <form id="expense-form" method="POST" action="{{ route('store-expense-application') }}">
                 @csrf
