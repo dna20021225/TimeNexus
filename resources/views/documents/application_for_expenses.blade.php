@@ -23,7 +23,7 @@
                 @csrf
                 <div class="space-y-6" x-data="{ rows: [0] }">
                     <!-- 申請日フォーム -->
-                    <x-expense.date-input label="申請日" />
+                    <x-date-input label="申請日" />
                     <!-- 費目フォーム -->
                     <div class="flex space-x-8">
                         <x-expense.dropdown 

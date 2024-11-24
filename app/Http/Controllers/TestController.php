@@ -159,4 +159,11 @@ class TestController extends Controller
         session(['documentName' => $documentName]);
         return redirect()->route('dashboard')->with('success', '経費が登録されました');
     }
+
+    public function worktable()
+    {
+        $documentName = '勤務表';
+        session(['documentName' => $documentName]);
+        return view('worktable', compact('documentName'));
+    }
 }

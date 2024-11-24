@@ -17,7 +17,7 @@
     <div 
         x-show="open"
         @click.outside="open = false"
-        class="absolute left-0 z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg"
+        class="absolute left-0 z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-[200px] overflow-y-auto"
     >
         @foreach($items as $id => $item)
             <a 

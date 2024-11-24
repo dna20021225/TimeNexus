@@ -38,4 +38,8 @@ Route::get('module-test', [TestController::class, 'moduleTest'])
 Route::get('/attendance/create', [TestController::class, 'createAttendance'])
     ->name('attendance.create');
 
+// worktable
+Route::get('/worktable', [TestController::class, 'worktable'])
+    ->name('worktable');
+
 require __DIR__.'/auth.php';
