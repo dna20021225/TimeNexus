@@ -33,7 +33,6 @@
                         <div class="flex items-center justify-center px-2 py-2">
                             <x-read-only-proparty
                                 type="toggle" 
-                                selected="option2" 
                                 wire:model="selectedOption"
                             />
                         </div>
