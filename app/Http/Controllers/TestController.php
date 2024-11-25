@@ -153,11 +153,40 @@ class TestController extends Controller
         return view('module_test', compact('categoriesWithItems', 'documentName'));
     }
 
-    public function createAttendance()
+    public function createAttendance(Request $request)
     {
+        $user = Auth::user();
+        $user->is_attendance = true;
+        $user->save();
+        
+        // フラッシュメッセージ用のデータを作成
+        $attendanceData = [
+            'message' => '出勤しました',
+            'company' => $request->company,
+            'department' => $request->department,
+            'is_flex' => $request->is_flextime,
+            'is_remote' => $request->is_remote,
+            'is_office' => $request->is_office,
+            'timestamp' => now()
+        ];
+
+
+    
         $documentName = 'ダッシュボード';
         session(['documentName' => $documentName]);
-        return redirect()->route('dashboard')->with('success', '経費が登録されました');
+        
+        return redirect()->route('dashboard')->with('attendance', $attendanceData);
+    }
+
+    public function leaveAttendance(Request $request)
+    {
+        // ユーザー状態(is_attendance)を更新
+        $user = Auth::user();
+        $user->is_attendance = false;
+        $user->save();
+        $documentName = 'ダッシュボード';
+        session(['documentName' => $documentName]);
+        return redirect()->route('dashboard')->with('leave', '退勤しました');
     }
 
     public function worktable()

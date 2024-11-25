@@ -35,8 +35,12 @@ Route::get('module-test', [TestController::class, 'moduleTest'])
     ->name('module-test');
 
 // attendance.create
-Route::get('/attendance/create', [TestController::class, 'createAttendance'])
+Route::post('/attendance/create', [TestController::class, 'createAttendance'])
     ->name('attendance.create');
+
+// attendance.leave
+Route::post('/attendance/leave', [TestController::class, 'leaveAttendance'])
+    ->name('attendance.leave');
 
 // worktable
 Route::get('/worktable', [TestController::class, 'worktable'])
