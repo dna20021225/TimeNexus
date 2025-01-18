@@ -27,4 +27,23 @@ Route::middleware('auth')->group(function () {
 Route::get('/documents/{category}/{id}', [TestController::class, 'showDocument'])
     ->name('documents.show');
 
+
+Route::post('/store-expenseapplication', [TestController::class, 'storeExpenseApplication'])
+    ->name('store-expense-application');
+
+Route::get('module-test', [TestController::class, 'moduleTest'])
+    ->name('module-test');
+
+// attendance.create
+Route::post('/attendance/create', [TestController::class, 'createAttendance'])
+    ->name('attendance.create');
+
+// attendance.leave
+Route::post('/attendance/leave', [TestController::class, 'leaveAttendance'])
+    ->name('attendance.leave');
+
+// worktable
+Route::get('/worktable', [TestController::class, 'worktable'])
+    ->name('worktable');
+
 require __DIR__.'/auth.php';

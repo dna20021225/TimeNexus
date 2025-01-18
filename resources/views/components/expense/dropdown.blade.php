@@ -1,9 +1,10 @@
 {{-- resources/views/components/expense/dropdown.blade.php --}}
-@props(['label', 'options', 'selected' => ''])
+@props(['label','name', 'options', 'selected' => ''])
 <div class="flex items-center space-x-4">
-    <label class="text-2xl">{{ $label }}</label>
+    <label class="pr-6 text-2xl">{{ $label }}</label>
     <select 
-        class="w-48 p-2 text-2xl bg-white border border-gray-200 rounded shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] transition-shadow duration-200 focus:outline-none cursor-pointer"
+        name="{{ $name }}"
+        class="w-48 p-2 text-2xl transition-shadow duration-200 border-none rounded shadow cursor-pointer bg-neutral-200 hover:shadow-md focus:outline-none"
     >
         @foreach($options as $option)
             <option 

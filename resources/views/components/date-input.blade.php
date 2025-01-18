@@ -4,7 +4,9 @@
     <label class="text-2xl">{{ $label }}</label>
     <input 
         type="date" 
+        name="date"
         value="{{ $value }}" 
-        class="w-2/5 py-3 text-2xl border border-gray-200 rounded bg-white shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] transition-shadow duration-200"
+        readonly
+        class="w-1/4 py-2 text-2xl transition-shadow duration-200 bg-gray-100 border rounded shadow cursor-not-allowed 0 hover:shadow-md"
     >
 </div>

@@ -1,52 +1,150 @@
+<!-- phpで変数を用意 -->
+<?php
+    $label = '勤務先企業';
+
+    $companies = [
+        1 => '株式会社アイシン',
+        2 => 'サンハウス食品株式会社',
+        3 => '株式会社システムリサーチ',
+        4 => 'Ｓｋｙ株式会社',
+        5 => '中部電力株式会社',
+        6 => '日本製鉄株式会社',
+    ];
+
+    $departments = [
+        1 => '営業部',
+        2 => '総務部',
+        3 => '人事部',
+        4 => '経理部',
+        5 => '開発部',
+        6 => '研究部',
+    ];
+?>
+
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-2xl font-bold leading-tight text-gray-800">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12 bg-gray-100">
-        <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-            <x-department-dropdown-component /> 
-            
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">勤怠入力</h3>
-                <div class="flex space-x-4">
-                    <a href="{{ route('dashboard') }}" class="px-6 py-2 text-white transition duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">出勤</a>
-                    <a href="{{ route('dashboard') }}" class="px-6 py-2 text-white transition duration-300 ease-in-out bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">退勤</a>
+    <x-container>            
+        <x-white-background-card height="h-30-screen">
+            @if(Auth::user()->is_attendance == false)
+            <form id="attendance-form" action="{{ route('attendance.create') }}" method="POST">
+            @else
+            <form id="attendance-form" action="{{ route('attendance.leave') }}" method="POST">
+            @endif
+                @csrf
+                <!-- ステータス -->
+                <div class="flex flex-row items-center mb-1 space-x-1">
+                    <div class="text-xl">あなたの状態は</div>
+                    @if(Auth::user()->is_attendance == true)<div class="text-2xl font-bold text-blue-400">出勤中</div>
+                    @else<div class="text-2xl font-bold text-red-400">退勤中</div>@endif
+                    <div class="text-xl">です。</div>
                 </div>
-            </x-white-background-card>
 
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">各種書類</h3>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    @foreach ($categoriesWithItems as $category => $items)
-                        <div class="relative">
-                            <select class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" onchange="navigateToPage(this.value)">
-                                <option value="" selected>{{ $category }}</option>
-                                @foreach ($items as $id => $item)
-                                    <option value="{{ route('documents.show', ['category' => $category, 'id' => $id]) }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
+                <!-- 横並びフレックスボックス -->
+                <div class="flex flex-row items-center space-x-6">
+                    <!-- ボタン -->
+                    <div class="flex space-x-12">
+                        @if(Auth::user()->is_attendance == false)
+                            <x-button
+                                type="submit"
+                                variant="primary"
+                                form="attendance-form" 
+                            >出勤</x-button>
+                            <x-button>
+                                退勤
+                            </x-button>
+                        @else
+                            <x-button>
+                                出勤
+                            </x-button>
+                            <x-button
+                                type="submit"
+                                variant="primary"
+                                form="attendance-form"
+                            >退勤</x-button>
+                        @endif
+                    </div>
+
+                    <!-- 勤務先選択 -->
+                    <div class="flex flex-col space-y-3">
+                        <x-simple-dropdown
+                            name="company"
+                            label="勤務先企業"
+                            :items="$companies"
+                        />
+                        <x-simple-dropdown
+                            name="department"
+                            label="部署"
+                            :items="$departments"
+                        />
+                    </div>
+
+                    <!-- チェックボックス -->
+                    <div class="overflow-x-auto">
+                        <div class="grid grid-flow-col grid-rows-2 gap-4 auto-cols-max">
+                            <x-checkbox
+                                name="is_flextime"
+                                label="フレックスタイム"
+                            />
+                            <x-checkbox
+                                name="is_remote"
+                                label="在宅勤務"
+                            />
+                            <x-checkbox
+                                name="is_office"
+                                label="本社勤務"
+                            />
+                            <x-checkbox
+                                name="terms"
+                                label="No context"
+                            />
+                            <x-checkbox
+                                name="terms"
+                                label="No context"
+                            />
+                            <x-checkbox
+                                name="terms"
+                                label="No context"
+                            />
+                            <x-checkbox
+                                name="terms"
+                                label="No context"
+                            />
+                            <x-checkbox
+                                name="terms"
+                                label="No context"
+                            />
+                            <x-checkbox
+                                name="terms"
+                                label="No context"
+                            />
                         </div>
-                    @endforeach
+                    </div>
                 </div>
-            </x-white-background-card>
+            </form>
 
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">検索</h3>
-                <form action="{{ route('dashboard') }}" method="GET">
-                    @csrf
-                    <textarea name="query" class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="検索ワードを入力してください"></textarea>
-                    <button type="submit" class="w-full px-4 py-2 mt-4 text-white transition duration-300 ease-in-out bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">検索</button>
-                </form>
-            </x-white-background-card>
-
-            <x-white-background-card>
-                <h3 class="mb-4 text-lg font-semibold">テスト</h3>
-            </x-white-background-card>
-        </div>
-    </div>
+            <!-- 勤務表確認ボタン -->
+            <div class="flex justify-first">
+                <x-simple-button
+                    type="button"
+                    label="勤務表の確認"
+                    href="{{ route('worktable') }}"
+                ></x-button>
+            </div>
+        </x-white-background-card>
+        <x-white-background-card height="h-60-screen">
+            <div class="mb-6 text-3xl">各種書類</div>
+            <div class="mb-5">
+                <x-search-input />
+            </div>
+            <div class="flex flex-row space-x-12">
+                @foreach ($categoriesWithItems as $category => $items)
+                    <x-document-dropdown 
+                        :category="$category"
+                        :items="$items"
+                    />
+                @endforeach
+            </div>
+        </x-white-background-card>
+    </x-container>
 </x-app-layout>
 
 <script>
